@@ -77,6 +77,7 @@ class Vue extends Preset
         copy(__DIR__.'/vue-stubs/app.js', resource_path('js/app.js'));
         mkdir(resource_path('js/Router'));
         mkdir(resource_path('js/Store'));
+        copy(__DIR__ . '/vue-stubs/App.vue', resource_path('js/App.vue'));
         copy(__DIR__ . '/vue-stubs/Router/index.js', resource_path('js/Router/index.js'));
         copy(__DIR__ . '/vue-stubs/Store/index.js', resource_path('js/Store/index.js'));
     }
