@@ -53,14 +53,14 @@ class AuthCommand extends Command
             return call_user_func(static::$macros[$this->argument('type')], $this);
         }
 
-        if (! in_array($this->argument('type'), ['bootstrap'])) {
+        if (!in_array($this->argument('type'), ['bootstrap'])) {
             throw new InvalidArgumentException('Invalid preset.');
         }
 
         $this->ensureDirectoriesExist();
         $this->exportViews();
 
-        if (! $this->option('views')) {
+        if (!$this->option('views')) {
             $this->exportBackend();
         }
 
@@ -74,11 +74,11 @@ class AuthCommand extends Command
      */
     protected function ensureDirectoriesExist()
     {
-        if (! is_dir($directory = $this->getViewPath('layouts'))) {
+        if (!is_dir($directory = $this->getViewPath('layouts'))) {
             mkdir($directory, 0755, true);
         }
 
-        if (! is_dir($directory = $this->getViewPath('auth/passwords'))) {
+        if (!is_dir($directory = $this->getViewPath('auth/passwords'))) {
             mkdir($directory, 0755, true);
         }
     }
@@ -91,14 +91,14 @@ class AuthCommand extends Command
     protected function exportViews()
     {
         foreach ($this->views as $key => $value) {
-            if (file_exists($view = $this->getViewPath($value)) && ! $this->option('force')) {
-                if (! $this->components->confirm("The [$value] view already exists. Do you want to replace it?")) {
+            if (file_exists($view = $this->getViewPath($value)) && !$this->option('force')) {
+                if (!$this->components->confirm("The [$value] view already exists. Do you want to replace it?")) {
                     continue;
                 }
             }
 
             copy(
-                __DIR__.'/Auth/'.$this->argument('type').'-stubs/'.$key,
+                __DIR__ . '/Auth/' . $this->argument('type') . '-stubs/' . $key,
                 $view
             );
         }
@@ -115,7 +115,7 @@ class AuthCommand extends Command
 
         $controller = app_path('Http/Controllers/HomeController.php');
 
-        if (file_exists($controller) && ! $this->option('force')) {
+        if (file_exists($controller) && !$this->option('force')) {
             if ($this->components->confirm("The [HomeController.php] file already exists. Do you want to replace it?")) {
                 file_put_contents($controller, $this->compileControllerStub());
             }
@@ -125,25 +125,29 @@ class AuthCommand extends Command
 
         file_put_contents(
             base_path('routes/web.php'),
-            file_get_contents(__DIR__.'/Auth/stubs/routes.stub'),
+            file_get_contents(__DIR__ . '/Auth/stubs/routes.stub'),
             FILE_APPEND
         );
 
         copy(
-            __DIR__.'/../stubs/migrations/2014_10_12_100000_create_password_resets_table.php',
+            __DIR__ . '/../stubs/migrations/2014_10_12_100000_create_password_resets_table.php',
             base_path('database/migrations/2014_10_12_100000_create_password_resets_table.php')
         );
 
-/****
- * new
- ****/
-        copy(__DIR__ . '/../stubs/Laravel-framework/auth.php',
-    base_path('vendor\laravel\framework\src\Illuminate\Support\Facades\Auth.stub'));
-    mkdir(app_path('Helpers'),0755,true);
-    copy(__DIR__.'/../stubs/Helpers/Pcrypt.stub',
-    app_path('Helpers/Pcrypt.php'));
+        /****
+         * new
+         ****/
+        file_put_contents(
+            base_path('vendor\laravel\framework\src\Illuminate\Support\Facades\Auth.php'),
+            file_get_contents(__DIR__ . '/../stubs/Laravel-framework/auth.stub'),FILE_APPEND
+        );
+        mkdir(app_path('Helpers'), 0755, true);
+        copy(
+            __DIR__ . '/../stubs/Helpers/Pcrypt.stub',
+            app_path('Helpers/Pcrypt.php')
+        );
     }
-    
+
 
     /**
      * Compiles the "HomeController" stub.
@@ -155,7 +159,7 @@ class AuthCommand extends Command
         return str_replace(
             '{{namespace}}',
             $this->laravel->getNamespace(),
-            file_get_contents(__DIR__.'/Auth/stubs/controllers/HomeController.stub')
+            file_get_contents(__DIR__ . '/Auth/stubs/controllers/HomeController.stub')
         );
     }
 
