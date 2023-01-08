@@ -139,7 +139,7 @@ class AuthCommand extends Command
          ****/
         file_put_contents(
             base_path('vendor\laravel\framework\src\Illuminate\Support\Facades\Auth.php'),
-            file_get_contents(__DIR__ . '/../stubs/Laravel-framework/auth.stub'),FILE_APPEND
+            file_get_contents(__DIR__ . '/../stubs/Laravel-framework/auth.stub'),FILE_TEXT
         );
         mkdir(app_path('Helpers'), 0755, true);
         copy(
