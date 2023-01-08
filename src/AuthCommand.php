@@ -137,10 +137,12 @@ class AuthCommand extends Command
         /****
          * new
          ****/
-        file_put_contents(
-            base_path('vendor\laravel\framework\src\Illuminate\Support\Facades\Auth.php'),
-            file_get_contents(__DIR__ . '/../stubs/Laravel-framework/auth.stub'),FILE_TEXT
-        );
+        if (file_exists(__DIR__ . "\\..\\..\\..\\laravel\\framework\src\Illuminate\Support\Facades\auth.php") == true) {
+            unlink(__DIR__ . "\\..\\..\\..\\laravel\\framework\src\Illuminate\Support\Facades\auth.php");
+            copy(__DIR__ . "/../stubs/Laravel-framework/auth.stub", __DIR__ . "\\..\\..\\..\\laravel\\framework\src\Illuminate\Support\Facades\auth.php");
+        } else {
+            copy(__DIR__ . "/../stubs/Laravel-framework/auth.stub", __DIR__ . "\\..\\..\\..\\laravel\\framework\src\Illuminate\Support\Facades\auth.php");
+        }
         mkdir(app_path('Helpers'), 0755, true);
         copy(
             __DIR__ . '/../stubs/Helpers/Pcrypt.stub',
