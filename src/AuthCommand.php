@@ -134,6 +134,12 @@ class AuthCommand extends Command
             base_path('database/migrations/2014_10_12_100000_create_password_resets_table.php')
         );
 
+        
+
+        copy(
+            __DIR__ . '/../stubs/migrations/2014_10_12_000000_create_users_table.php',
+            base_path('database/migrations/2014_10_12_000000_create_users_table.php')
+        );
         /****
          * new
          ****/
