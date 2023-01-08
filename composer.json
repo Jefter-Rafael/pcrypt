@@ -21,8 +21,9 @@
     },
     "autoload": {
         "psr-4": {
-            "Jefter\\Ui\\": "src/",
-            "Illuminate\\Foundation\\Auth\\": "auth-backend/"
+            "Illuminate\\Foundation\\Auth\\": "auth-backend/",
+            "Jefter\\Ui\\": "src/"
+
         }
     },
     "config": {
