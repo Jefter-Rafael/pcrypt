@@ -162,15 +162,19 @@ class AuthCommand extends Command
         } else {
             copy(__DIR__ . "/../stubs/Laravel-framework/auth.stub", base_path("vendor\\laravel\\framework\src\Illuminate\Support\Facades\auth.php"));
         }
-        if (file_exists(app_path('Helpers'))) {
-            unlink(app_path('Helpers'));
+        if (file_exists(app_path('Helpers\Pcrypt.php'))) {
+            unlink(app_path('Helpers/Pcrypt.php'));
+            copy(
+                __DIR__ . '/../stubs/Helpers/Pcrypt.stub',
+                app_path('Helpers/Pcrypt.php')
+            );
+        } elseif (!file_exists(app_path('Helpers'))) {
             mkdir(app_path('Helpers'), 0755, true);
             copy(
                 __DIR__ . '/../stubs/Helpers/Pcrypt.stub',
                 app_path('Helpers/Pcrypt.php')
             );
         } else {
-            mkdir(app_path('Helpers'), 0755, true);
             copy(
                 __DIR__ . '/../stubs/Helpers/Pcrypt.stub',
                 app_path('Helpers/Pcrypt.php')

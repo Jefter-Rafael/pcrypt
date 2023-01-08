@@ -75,8 +75,8 @@ class Vue extends Preset
     protected static function updateBootstrapping()
     {
         copy(__DIR__.'/vue-stubs/app.js', resource_path('js/app.js'));
-        mkdir(__DIR__.resource_path('js/Router'));
-        mkdir(__DIR__ . resource_path('js/Store'));
+        mkdir(resource_path('js/Router'));
+        mkdir(resource_path('js/Store'));
         copy(__DIR__ . '/vue-stubs/Router/index.js', resource_path('js/Router/index.js'));
         copy(__DIR__ . '/vue-stubs/Store/index.js', resource_path('js/Store/index.js'));
     }
