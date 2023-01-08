@@ -38,6 +38,7 @@ class AuthCommand extends Command
         'auth/verify.stub' => 'auth/verify.blade.php',
         'home.stub' => 'home.blade.php',
         'layouts/app.stub' => 'layouts/app.blade.php',
+        'layouts/appVue.stub' => 'layouts/appVue.blade.php',
     ];
 
     /**

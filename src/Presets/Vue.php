@@ -31,7 +31,7 @@ class Vue extends Preset
     protected static function updatePackageArray(array $packages)
     {
         return [
-            '@vitejs/plugin-vue' => '^4.0.0',
+            '@vitejs/plugin-vue' => '^3.0.1',
             'vue' => '^3.2.37',
             "vue-router" => "^4.1.6",
             "vuex" => "^4.0.2"

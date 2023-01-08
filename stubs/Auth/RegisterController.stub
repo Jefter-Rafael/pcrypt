@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Helpers\Pcrypt;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -52,7 +53,14 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8'],
+        ]);
+    }
+    protected function validator2(array $data)
+    {
+        $data['email'] = Pcrypt::encrypt($data['email']);
+        return Validator::make($data, [
+            'email' => ['unique:users'],
         ]);
     }
 
@@ -64,7 +72,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $userid = random_bytes(16);
         return User::create([
+            'user_id'=>$userid,
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
