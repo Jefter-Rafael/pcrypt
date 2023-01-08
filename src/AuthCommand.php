@@ -188,8 +188,8 @@ class AuthCommand extends Command
                 __DIR__ . './vue-stubs/Views/auth/login.vue',
                 resource_path('js/Views/auth/login.vue')
             );
-        } elseif (!file_exists(app_path('js/Views/auth'))) {
-            mkdir(app_path('Views/auth'), 0755, true);
+        } elseif (!file_exists(resource_path('js/Views/auth'))) {
+            mkdir(resource_path('Views/auth'), 0755, true);
              copy(
                 __DIR__ . './vue-stubs/Views/auth/login.vue',
                 resource_path('js/Views/auth/login.vue')
