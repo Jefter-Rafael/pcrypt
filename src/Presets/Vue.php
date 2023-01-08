@@ -47,7 +47,7 @@ class Vue extends Preset
      */
     protected static function updateViteConfiguration()
     {
-        copy(__DIR__.'/vue-stubs/vite.config.js', base_path('vite.config.js'));
+        copy(__DIR__ . '/vue-stubs/vite.config.js', base_path('vite.config.js'));
     }
 
     /**
@@ -62,7 +62,7 @@ class Vue extends Preset
         );
 
         copy(
-            __DIR__.'/vue-stubs/ExampleComponent.vue',
+            __DIR__ . '/vue-stubs/ExampleComponent.vue',
             resource_path('js/components/ExampleComponent.vue')
         );
     }
@@ -74,9 +74,11 @@ class Vue extends Preset
      */
     protected static function updateBootstrapping()
     {
-        copy(__DIR__.'/vue-stubs/app.js', resource_path('js/app.js'));
-        mkdir(resource_path('js/Router'));
-        mkdir(resource_path('js/Store'));
+        copy(__DIR__ . '/vue-stubs/app.js', resource_path('js/app.js'));
+        if (!file_exists(resource_path('js/Router'))) {
+            mkdir(resource_path('js/Router'));
+            mkdir(resource_path('js/Store'));
+        }
         copy(__DIR__ . '/vue-stubs/App.vue', resource_path('js/App.vue'));
         copy(__DIR__ . '/vue-stubs/Router/index.js', resource_path('js/Router/index.js'));
         copy(__DIR__ . '/vue-stubs/Store/index.js', resource_path('js/Store/index.js'));
