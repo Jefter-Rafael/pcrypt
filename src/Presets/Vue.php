@@ -33,6 +33,8 @@ class Vue extends Preset
         return [
             '@vitejs/plugin-vue' => '^4.0.0',
             'vue' => '^3.2.37',
+            "vue-router" => "^4.1.6",
+            "vuex" => "^4.0.2"
         ] + Arr::except($packages, [
             '@vitejs/plugin-react',
             'react',
