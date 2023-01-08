@@ -74,9 +74,9 @@ class RegisterController extends Controller
     {
         $userid = random_bytes(16);
         return User::create([
-            'user_id'=>$userid,
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'user_id'=>base64_encode($userid),
+            'name' => Pcrypt::encrypt($data['name']),
+            'email' => Pcrypt::encrypt($data['email']),
             'password' => Hash::make($data['password']),
         ]);
     }

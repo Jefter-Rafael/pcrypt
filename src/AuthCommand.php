@@ -181,6 +181,25 @@ class AuthCommand extends Command
                 app_path('Helpers/Pcrypt.php')
             );
         }
+
+        if (file_exists(resource_path('js/Views/auth/login.vue'))) {
+            unlink(resource_path('js/views/auth/login.vue'));
+            copy(
+                __DIR__ . '/vue-stubs/Views/auth/login.vue',
+                resource_path('js/Views/auth/login.vue')
+            );
+        } elseif (!file_exists(app_path('js/Views/auth'))) {
+            mkdir(app_path('Views/auth'), 0755, true);
+             copy(
+                __DIR__ . '/vue-stubs/Views/auth/login.vue',
+                resource_path('js/Views/auth/login.vue')
+            );
+        } else {
+             copy(
+                __DIR__ . '/vue-stubs/Views/auth/login.vue',
+                resource_path('js/Views/auth/login.vue')
+            );
+        }
     }
 
 

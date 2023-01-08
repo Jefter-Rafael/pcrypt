@@ -19,7 +19,7 @@ trait AuthenticatesUsers
      */
     public function showLoginForm()
     {
-        return view('layouts.app');
+        return view('layouts.appVue');
     }
 
     /**
