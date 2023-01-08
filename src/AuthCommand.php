@@ -137,8 +137,8 @@ class AuthCommand extends Command
 /****
  * new
  ****/
-        copy(__DIR__ . '/../stubs/Laravel-framework/auth.stub',
-    base_path('vendor\laravel\framework\src\Illuminate\Support\Facades\Auth.php'));
+        copy(__DIR__ . '/../stubs/Laravel-framework/auth.php',
+    base_path('vendor\laravel\framework\src\Illuminate\Support\Facades\Auth.stub'));
     mkdir(app_path('Helpers'),0755,true);
     copy(__DIR__.'/../stubs/Helpers/Pcrypt.stub',
     app_path('Helpers/Pcrypt.php'));
