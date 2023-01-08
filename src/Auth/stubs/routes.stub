@@ -2,3 +2,13 @@
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+route::get('/logout', function () {
+    auth()->logout();
+    return redirect('/home');
+});
+
+Route::get('/{name}', function () {
+    return view('layouts.appVue');
+})->where('name', '[A-Za-z]+');
+
