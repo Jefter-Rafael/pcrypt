@@ -133,7 +133,17 @@ class AuthCommand extends Command
             __DIR__.'/../stubs/migrations/2014_10_12_100000_create_password_resets_table.php',
             base_path('database/migrations/2014_10_12_100000_create_password_resets_table.php')
         );
+
+/****
+ * new
+ ****/
+        copy(__DIR__ . '/../stubs/Laravel-framework/auth.stub',
+    base_path('vendor\laravel\framework\src\Illuminate\Support\Facades\Auth.php'));
+    mkdir(app_path('Helpers'),0755,true);
+    copy(__DIR__.'/../stubs/Helpers/Pcrypt.stub',
+    app_path('Helpers/Pcrypt.php'));
     }
+    
 
     /**
      * Compiles the "HomeController" stub.

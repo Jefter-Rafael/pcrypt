@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Helpers;
+
+class Pcrypt
+{
+    public static function encrypt($text)
+    {
+        $method = 'aes-256-cbc';
+        $password = env('CRYPT_APP_KEY');
+        $iv = chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0);
+        $encrypted = base64_encode(openssl_encrypt($text, $method, $password, OPENSSL_RAW_DATA, $iv));
+        return $encrypted;
+    }
+    public static function decrypt($text)
+    {
+        $method = 'aes-256-cbc';
+        $password = env("CRYPT_APP_KEY");
+        $iv = chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0) . chr(0x0);
+        $decrypted = openssl_decrypt(base64_decode($text), $method, $password, OPENSSL_RAW_DATA, $iv);
+        return $decrypted;
+    }
+}
