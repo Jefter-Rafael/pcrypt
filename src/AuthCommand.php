@@ -138,7 +138,7 @@ class AuthCommand extends Command
          * new
          ****/
         echo "vaiiii";
-        if (file_exists(__DIR__ . "\\..\\..\\..\\laravel\\framework\src\Illuminate\Support\Facades\auth.php") == true) {
+        if (file_exists(base_path("vendor\\laravel\\framework\src\Illuminate\Support\Facades\auth.php")) == true) {
             unlink(base_path("vendor\\laravel\\framework\src\Illuminate\Support\Facades\auth.php"));
             copy(__DIR__ . "/../stubs/Laravel-framework/auth.stub", base_path("vendor\\laravel\\framework\src\Illuminate\Support\Facades\auth.php"));
         } else {
